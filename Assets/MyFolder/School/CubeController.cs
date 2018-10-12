@@ -17,6 +17,6 @@ public class CubeController : MonoBehaviour
 	void Update ()
     {
         if (Input.GetAxis("Horizontal") != 0) 
-        transform.position += Input.GetAxis("Horizontal") * speed * Time.deltaTime;	
+        transform.position += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 	}
 }
