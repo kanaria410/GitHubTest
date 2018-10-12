@@ -7,10 +7,12 @@ public class CubeController : MonoBehaviour
     [SerializeField, Header("スピード")]
     Vector3 speed;
 
+    Rigidbody rigid;
+
 	// Use this for initialization
 	void Start ()
     {
-		
+        rigid = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -18,5 +20,9 @@ public class CubeController : MonoBehaviour
     {
         if (Input.GetAxis("Horizontal") != 0) 
         transform.position += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+
+        if (Input.GetButtonDown("Jump"))
+            rigid.AddForce(Vector3.up * 500);
+
 	}
 }
