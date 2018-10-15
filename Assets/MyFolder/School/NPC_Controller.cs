@@ -7,12 +7,20 @@ public class NPC_Controller : MonoBehaviour {
     private int jumpcount;      //ジャンブした回数をカウント
     int state;                  //状態
     [SerializeField,Header("プレイヤーとの距離感")]
-    int playerOfdis;            //プレイヤーとの距離
+    int playerOfDis;            //プレイヤーとの距離
     public float jumpPower;     //ジャンプ力
     public float speed;         //移動スピード
     Vector3 distance;           //プレイヤーとの距離
     GameObject target;          //追いかける対象
     Rigidbody rb;               //body獲得      
+
+    public enum StateType
+    {
+        IDLE = 1,   //生きている
+        WALK = 2,   //歩く
+        ATTACK = 3, //攻撃
+        AVOID = 4,  //回避
+    }
 
     void Start()
     {
@@ -28,7 +36,7 @@ public class NPC_Controller : MonoBehaviour {
         //通常は生きていればtrueになるように書く
         if (true)
         {
-            state = 2;
+            state = (int)StateType.WALK;
         }
     }
 
@@ -37,19 +45,19 @@ public class NPC_Controller : MonoBehaviour {
         //自分とプレイヤーの間の距離を計算
         distance = target.transform.position - transform.position;
 
-        if (Mathf.Abs(distance.x) > playerOfdis)
+        if (Mathf.Abs(distance.x) > playerOfDis)
         {
-            
-        }
+            //state = (int)StateType.ATTACK;
 
-        //プレイヤーが右にいれば右に、左にいれば左に移動
-        if (distance.x > 0)
-        {
-            transform.position += transform.right * speed * Time.deltaTime;
-        }
-        else
-        {
-            transform.position -= transform.right * speed * Time.deltaTime;
+            //プレイヤーが右にいれば右に、左にいれば左に移動
+            if (distance.x > 0)
+            {
+                transform.position += transform.right * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position -= transform.right * speed * Time.deltaTime;
+            }
         }
     }
 
