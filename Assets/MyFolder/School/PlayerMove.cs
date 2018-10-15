@@ -47,4 +47,12 @@ public class PlayerMove : MonoBehaviour {
             Debug.Log("初期化済み");
         }
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Ground")
+    //    {
+    //        jumpcount = 0;
+    //        Debug.Log("初期化済み");
+    //    }
+    //}
 }
